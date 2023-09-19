@@ -1,5 +1,6 @@
 import type { TaskModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
+import Link from 'next/link';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
@@ -52,9 +53,11 @@ const Home = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio!
-      </div>
+      <Link href="/register">
+        <div className={styles.title} style={{ marginTop: '160px' }}>
+          登録はこちらから
+        </div>
+      </Link>
 
       <form style={{ textAlign: 'center', marginTop: '80px' }} onSubmit={createTask}>
         <input value={label} type="text" onChange={inputLabel} />
