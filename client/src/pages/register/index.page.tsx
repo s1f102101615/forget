@@ -3,8 +3,12 @@ import styles from './index.module.css';
 const Home = () => {
   return (
     <>
-      <div>バーコードの画像を入力してください</div>
-      <button className={styles.btn}>BUTTON</button>
+      <div className={styles.base}>
+        <div className={styles.head}>
+          <div>バーコードの画像を入力してください</div>
+          <button className={styles.btn}>アップロード</button>
+        </div>
+      </div>
     </>
   );
 };
