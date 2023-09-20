@@ -3,23 +3,39 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
+import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
 type Item = {
   id: number;
-  name: string;
-  value: number;
+  itemname: string;
+  itemvalue: number;
+  createdAt: Date;
 };
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  const [items, setItems] = useState<Item[]>([]);
 
-  const [items, setItems] = useState<Item[]>([
-    { id: 1, name: 'Item 1', value: 100 },
-    { id: 2, name: 'Item 2', value: 200 },
-    { id: 3, name: 'Item 3', value: 300 },
-  ]);
+  useEffect(() => {
+    const fetchItems = async () => {
+      const itemsget = await apiClient.finditem.get();
+      const nowitem: Item[] = [];
+      itemsget.body.forEach((item) => {
+        nowitem.push({
+          id: item.id,
+          itemname: item.itemname,
+          itemvalue: item.itemvalue,
+          createdAt: item.createdAt,
+        });
+      });
+      console.log(nowitem);
+      setItems(nowitem);
+    };
+
+    fetchItems();
+  }, []);
 
   // const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
   //   setLabel(e.target.value);
@@ -69,8 +85,8 @@ const Home = () => {
           <ul>
             {items.map((item) => (
               <li className={styles.list} key={item.id}>
-                <div className={styles.name}>{item.name}</div>
-                <div>{item.value}円</div>
+                <div className={styles.name}>{item.itemname}</div>
+                <div>{item.itemvalue}円</div>
               </li>
             ))}
           </ul>

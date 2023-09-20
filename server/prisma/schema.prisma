@@ -16,7 +16,8 @@ model Task {
 }
 
 model item {
-  id        String   @id
+  userid    String
+  id        Int      @id @default(autoincrement())
   itemname  String
   itemvalue Int
   createdAt DateTime
