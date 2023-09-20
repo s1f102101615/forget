@@ -63,10 +63,16 @@
 }
 
 .head {
+  font-size: 30px;
   text-align: center;
 }
 
 .listed {
   width: 600px;
   border: 3px;
+}
+
+.name {
+  font-size: 20px;
+  text-align: center;
 }

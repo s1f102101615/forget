@@ -69,7 +69,7 @@ const Home = () => {
           <ul>
             {items.map((item) => (
               <li className={styles.list} key={item.id}>
-                <div>{item.name}</div>
+                <div className={styles.name}>{item.name}</div>
                 <div>{item.value}円</div>
               </li>
             ))}

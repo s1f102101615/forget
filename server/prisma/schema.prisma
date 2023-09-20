@@ -14,3 +14,10 @@ model Task {
   done      Boolean
   createdAt DateTime
 }
+
+model item {
+  id        String   @id
+  itemname  String
+  itemvalue Int
+  createdAt DateTime
+}
