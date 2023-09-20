@@ -3,13 +3,14 @@ import { itemRepository } from '$/repository/itemRepository';
 
 export const itemUsecase = {
   create: async (
-    id: ItemModel['id'],
+    userid: ItemModel['userid'],
     itemname: ItemModel['itemname'],
     itemvalue: ItemModel['itemvalue'],
     createdAt: ItemModel['createdAt']
   ) => {
     const item: ItemModel = {
-      id,
+      userid,
+      id: Math.floor(Math.random() * 100000000),
       itemname,
       itemvalue,
       createdAt,

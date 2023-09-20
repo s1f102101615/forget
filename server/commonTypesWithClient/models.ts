@@ -19,7 +19,8 @@ export const taskParser = z.object({
 export type TaskModel = z.infer<typeof taskParser>;
 
 export type ItemModel = {
-  id: UserId;
+  userid: UserId;
+  id: number;
   itemname: string;
   itemvalue: number;
   createdAt: Date;

@@ -76,3 +76,53 @@
   font-size: 20px;
   text-align: center;
 }
+
+.selectbox002 {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.selectbox002::before,
+.selectbox002::after {
+  position: absolute;
+  pointer-events: none;
+  content: '';
+}
+
+.selectbox002::before {
+  right: 0;
+  display: inline-block;
+  width: 2.8em;
+  height: 2.8em;
+  content: '';
+  background-color: #2589d0;
+  border-radius: 0 3px 3px 0;
+}
+
+.selectbox002::after {
+  position: absolute;
+  top: 50%;
+  right: 1.4em;
+  width: 6px;
+  height: 6px;
+  content: '';
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: translate(50%, -50%) rotate(45deg);
+}
+
+.selectbox002 select {
+  min-width: 230px;
+  height: 2.8em;
+  padding: 0.4em 3.6em 0.4em 0.8em;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+  border: 2px solid #2589d0;
+  border-radius: 3px;
+}
+
+.selectbox002 select:focus {
+  outline: 1px solid #2589d0;
+}
