@@ -81,6 +81,15 @@ const Home = () => {
       </Link>
       <div className={styles.base}>
         <div className={styles.head}>所持品リスト</div>
+        {/* ソートを決めるのをselectでつける */}
+        <label className={styles.selectbox002}>
+          <select>
+            <option value="1">価格の安い順</option>
+            <option value="2">価格の高い順</option>
+            <option value="3">登録日の新しい順</option>
+            <option value="4">登録日の古い順</option>
+          </select>
+        </label>
         <div className={styles.listed}>
           <ul>
             {items.map((item) => (
