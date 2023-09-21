@@ -1,3 +1,4 @@
+import type { UserId } from '$/commonTypesWithClient/ids';
 import type { userlabelModel } from '$/commonTypesWithClient/models';
 import { prismaClient } from '$/service/prismaClient';
 
@@ -16,5 +17,14 @@ export const userlabelRepository = {
         label: userlabels.label,
       },
     });
+  },
+  getlabels: async (userid: UserId) => {
+    // dbのUserDataのinvolvedidのリストから約束の情報を返す
+    const labels = await prismaClient.userlabel.findFirst({
+      where: {
+        userid,
+      },
+    });
+    return labels;
   },
 };
