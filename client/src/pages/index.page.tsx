@@ -18,6 +18,7 @@ const Home = () => {
   const [user] = useAtom(userAtom);
   const [items, setItems] = useState<Item[]>([]);
   const [selectedValue, setSelectedValue] = useState('new');
+  const [itemTypes, setItemTypes] = useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -97,6 +98,15 @@ const Home = () => {
   }
 
   useEffect(() => {
+    const fetchlabels = async () => {
+      const labelget = await apiClient.findlabel.get();
+      if (labelget.body?.label === undefined) return;
+      setItemTypes(labelget.body?.label);
+    };
+    fetchlabels();
+  }, []);
+
+  useEffect(() => {
     if (!user) return;
   }, [user]);
 
@@ -113,10 +123,13 @@ const Home = () => {
       <div className={styles.base}>
         <div className={styles.head}>所持品リスト</div>
         <label className={styles.selectbox005}>
-          <select>
-            <option>optionの例1</option>
-            <option>optionの例2</option>
-            <option>optionの例3</option>
+          <select value={selectedValue} onChange={handleChange}>
+            <option value="">選択してください</option>
+            {itemTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
           </select>
         </label>
         {/* ソートを決めるのをselectでつける */}
