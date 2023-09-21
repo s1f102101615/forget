@@ -17,6 +17,11 @@ type Item = {
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [items, setItems] = useState<Item[]>([]);
+  const [selectedValue, setSelectedValue] = useState('new');
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedValue(event.target.value);
+  };
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -65,6 +70,32 @@ const Home = () => {
   //   await fetchTasks();
   // };
 
+  let sorteditems = items.sort((a, b) => {
+    if (a.createdAt > b.createdAt) return -1;
+    if (a.createdAt < b.createdAt) return 1;
+    return 0;
+  });
+
+  if (selectedValue === 'old') {
+    sorteditems = items.sort((a, b) => {
+      if (a.createdAt > b.createdAt) return 1;
+      if (a.createdAt < b.createdAt) return -1;
+      return 0;
+    });
+  } else if (selectedValue === 'low') {
+    sorteditems = items.sort((a, b) => {
+      if (a.itemvalue > b.itemvalue) return 1;
+      if (a.itemvalue < b.itemvalue) return -1;
+      return 0;
+    });
+  } else if (selectedValue === 'high') {
+    sorteditems = items.sort((a, b) => {
+      if (a.itemvalue > b.itemvalue) return -1;
+      if (a.itemvalue < b.itemvalue) return 1;
+      return 0;
+    });
+  }
+
   useEffect(() => {
     if (!user) return;
   }, [user]);
@@ -83,16 +114,16 @@ const Home = () => {
         <div className={styles.head}>所持品リスト</div>
         {/* ソートを決めるのをselectでつける */}
         <label className={styles.selectbox002}>
-          <select>
-            <option value="1">価格の安い順</option>
-            <option value="2">価格の高い順</option>
-            <option value="3">登録日の新しい順</option>
-            <option value="4">登録日の古い順</option>
+          <select value={selectedValue} onChange={handleChange}>
+            <option value="new">登録日の新しい順</option>
+            <option value="old">登録日の古い順</option>
+            <option value="low">価格の安い順</option>
+            <option value="high">価格の高い順</option>
           </select>
         </label>
         <div className={styles.listed}>
           <ul>
-            {items.map((item) => (
+            {sorteditems.map((item) => (
               <li className={styles.list} key={item.id}>
                 <div className={styles.name}>{item.itemname}</div>
                 <div>{item.itemvalue}円</div>
