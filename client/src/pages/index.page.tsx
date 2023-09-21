@@ -112,6 +112,13 @@ const Home = () => {
       </Link>
       <div className={styles.base}>
         <div className={styles.head}>所持品リスト</div>
+        <label className={styles.selectbox005}>
+          <select>
+            <option>optionの例1</option>
+            <option>optionの例2</option>
+            <option>optionの例3</option>
+          </select>
+        </label>
         {/* ソートを決めるのをselectでつける */}
         <label className={styles.selectbox002}>
           <select value={selectedValue} onChange={handleChange}>
