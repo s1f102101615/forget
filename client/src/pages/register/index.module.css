@@ -111,7 +111,8 @@
 .textbox003 {
   width: 200px;
   padding: 8px 10px;
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 1em;
   line-height: 1.5;
   color: #333;
@@ -172,4 +173,31 @@
 
 .selectbox002 select:focus {
   outline: 1px solid #2589d0;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px; /* 余白       */
+  font-size: 19pt; /* 文字サイズ */
+  line-height: 0.6em; /* 1行の高さ  */
+  color: #fff; /* 文字色     */
+  text-align: center; /* 文字位置   */
+  cursor: pointer; /* カーソル   */
+  background: #006; /* 背景色     */
+  border: 2px solid #006; /* 枠の指定 */
+  border-radius: 3%; /* 角丸       */
+  box-shadow: 3px 3px 3px #666; /* 影の設定 */
+  transition: 0.3s; /* なめらか変化 */
+}
+
+.button:hover {
+  color: #006; /* 背景色     */
+  background: #fff; /* 文字色     */
+  box-shadow: none; /* カーソル時の影消去 */
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

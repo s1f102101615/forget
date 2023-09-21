@@ -71,14 +71,18 @@ const Home = () => {
             </select>
           </label>
           {/* 商品の種類を追加する */}
-          <input
-            type="text"
-            className={styles.textbox003}
-            value={newItemType}
-            placeholder="新しい商品の種類を追加"
-            onChange={(e) => setNewItemType(e.target.value)}
-          />
-          <button onClick={handleAddItemType}>商品の種類を追加</button>
+          <div className={styles.line}>
+            <input
+              type="text"
+              className={styles.textbox003}
+              value={newItemType}
+              placeholder="新しい商品の種類を追加"
+              onChange={(e) => setNewItemType(e.target.value)}
+            />
+            <button onClick={handleAddItemType} className={styles.button}>
+              登録
+            </button>
+          </div>
 
           <form onSubmit={register}>
             <div className={styles.form}>
