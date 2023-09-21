@@ -126,3 +126,37 @@
 .selectbox002 select:focus {
   outline: 1px solid #2589d0;
 }
+
+.selectbox005 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.selectbox005::after {
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  pointer-events: none;
+  content: '';
+  background-color: #535353;
+}
+
+.selectbox005 select {
+  min-width: 230px;
+  height: 2.8em;
+  padding: 0.4em calc(0.8em + 30px) 0.4em 0.8em;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  appearance: none;
+}
+
+.selectbox005 select:focus {
+  outline: none;
+}

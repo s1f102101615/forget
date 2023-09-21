@@ -9,7 +9,7 @@ const Home = () => {
   const [selectedValue, setSelectedValue] = useState('');
   const [newItemType, setNewItemType] = useState('');
   const [itemvalue, setItemvalue] = useState(0);
-  const [itemTypes, setItemTypes] = useState(['under', 'upper', 'outer', 'shoes', 'other']);
+  const [itemTypes, setItemTypes] = useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -39,17 +39,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchItems = async () => {
-      {
-        const label = ['under', 'upper', 'outer', 'shoes', 'other'];
-        await apiClient.userlabel.post({
-          body: {
-            label,
-          },
-        });
-      }
+    const fetchlabels = async () => {
+      const labelget = await apiClient.findlabel.get();
+      if (labelget.body?.label === undefined) return;
+      setItemTypes(labelget.body?.label);
     };
-    fetchItems();
+    fetchlabels();
   }, []);
 
   return (
@@ -76,14 +71,18 @@ const Home = () => {
             </select>
           </label>
           {/* 商品の種類を追加する */}
-          <input
-            type="text"
-            className={styles.textbox003}
-            value={newItemType}
-            placeholder="新しい商品の種類を追加"
-            onChange={(e) => setNewItemType(e.target.value)}
-          />
-          <button onClick={handleAddItemType}>商品の種類を追加</button>
+          <div className={styles.line}>
+            <input
+              type="text"
+              className={styles.textbox003}
+              value={newItemType}
+              placeholder="新しい商品の種類を追加"
+              onChange={(e) => setNewItemType(e.target.value)}
+            />
+            <button onClick={handleAddItemType} className={styles.button}>
+              登録
+            </button>
+          </div>
 
           <form onSubmit={register}>
             <div className={styles.form}>
