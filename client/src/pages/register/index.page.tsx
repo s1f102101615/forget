@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { FormEvent } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiClient } from 'src/utils/apiClient';
 import styles from './index.module.css';
 
@@ -19,6 +19,20 @@ const Home = () => {
       },
     });
   };
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      {
+        const label = ['under', 'upper', 'outer', 'shoes', 'other'];
+        await apiClient.userlabel.post({
+          body: {
+            label,
+          },
+        });
+      }
+    };
+    fetchItems();
+  }, []);
 
   return (
     <>

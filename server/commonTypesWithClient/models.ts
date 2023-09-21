@@ -25,3 +25,8 @@ export type ItemModel = {
   itemvalue: number;
   createdAt: Date;
 };
+
+export type userlabelModel = {
+  userid: UserId;
+  label: string[];
+};

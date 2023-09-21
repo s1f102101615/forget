@@ -22,3 +22,8 @@ model item {
   itemvalue Int
   createdAt DateTime
 }
+
+model userlabel {
+  userid String   @id
+  label  String[]
+}
